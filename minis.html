@@ -58,7 +58,40 @@
                     </div>
                     <div class="col-lg-6 col-md-5 text-md-right text-center mt-2 mt-md-0">
                         <div class="topbar-social">
-                            <div class="topbar-date d-none d-lg-inline-block"><i class="fa fa-calendar"></i> Saturday, October 7</div>
+                            <div class="topbar-date d-none d-lg-inline-block">
+                                <i class="fa fa-calendar"></i> 
+                                <span id="auto-date">Samedi, 7 octobre</span>
+                            </div>
+                            
+                            <script>
+                            function updateDateTime() {
+                                const now = new Date();
+                                
+                                const options = { 
+                                    weekday: 'long', 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric',
+                                    timeZone: 'Africa/Brazzaville'
+                                };
+                                
+                                const dateString = now.toLocaleDateString('fr-FR', options);
+                                const timeString = now.toLocaleTimeString('fr-FR', { 
+                                    hour12: false, 
+                                    hour: '2-digit', 
+                                    minute: '2-digit', 
+                                    second: '2-digit',
+                                    timeZone: 'Africa/Brazzaville'
+                                });
+                                
+                                document.getElementById('auto-date').textContent = `${dateString} - ${timeString}`;
+                            }
+                            
+                            // Démarrage
+                            updateDateTime();
+                            setInterval(updateDateTime, 1000);
+                            </script>
+                            
                             <ul class="social-area social-area-2">
                                 <li><a class="facebook-icon" href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a class="twitter-icon" href="#"><i class="fa fa-twitter"></i></a></li>
